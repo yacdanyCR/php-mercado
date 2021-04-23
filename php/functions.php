@@ -72,4 +72,21 @@
             return false;
         }
     }
+
+    //function seleccionarUsuario
+    function obtenerUsuario($conexion,$email){
+        $sql="SELECT usuario FROM usuario WHERE correo=:correo";
+
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':correo',$email,PDO::PARAM_STR);
+        $result->execute();
+
+        return $row=$result->fetchObject();
+    }
+
+    //CerrarSession
+    function cerrarSession(){
+        session_destroy();
+        header('Location:login.php');
+    }
 ?>

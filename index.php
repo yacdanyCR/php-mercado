@@ -13,6 +13,7 @@
 
 <body>
     <?php
+    session_start();
     include_once 'db/config.php';
     ?>
 

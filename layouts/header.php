@@ -12,10 +12,35 @@
       <li class="nav-item">
         <a class="nav-link" href="productos.php"><i class="bi bi-cart-check"></i>Productos</a>
       </li>
+      <?php
+      if (!isset($_SESSION['usuario'])) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php"><i class="bi bi-people"></i>Iniciar Sessión</a>
+        </li>
+      <?php
+      }
+      ?>
 
-      <li class="nav-item">
-        <a class="nav-link" href="login.php"><i class="bi bi-people"></i>Iniciar Sessión</a>
-      </li>
+      <?php
+      if (!isset($_SESSION['usuario'])) {
+      } else {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link" href="loginPage.php"><i class="bi bi-person-circle"></i><?php echo $_SESSION['usuario']; ?></a>
+        </li>
+        <form method="post">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="CerrarSession">Cerrar Sessión</button>
+        </form>
+      <?php
+      }
+      ?>
+      <?php
+        if(isset($_POST['CerrarSession'])){
+          include_once 'php/functions.php';
+          cerrarSession();
+        }
+      ?>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
