@@ -51,9 +51,47 @@
                 </button>
             </div>
         </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <i class="bi bi-bucket"></i>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis sit porro, odio harum, at dolores molestias labore ut distinctio quo ipsa? Repellat, magnam vel! Ab excepturi eligendi minus non dolorum.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos fugit voluptates asperiores rem assumenda at molestiae dicta nam inventore, repellendus blanditiis? Commodi dolorum eveniet cumque quaerat illum vitae reprehenderit quia!
+                </p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-bucket"></i>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam nulla impedit, dolorum in corporis incidunt veritatis quasi nihil provident. Numquam laboriosam debitis, iste eum accusantium ea! Soluta quasi natus facilis.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi quis excepturi culpa est omnis sint cupiditate, dolorum molestias quod possimus natus hic iste corrupti tempora vero repellendus, libero provident esse.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-bucket"></i>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique at esse perferendis quos quidem? Natus voluptate obcaecati fugiat minima cupiditate reprehenderit tenetur perferendis aliquam, fugit eius vel veritatis amet ullam!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ducimus tenetur reprehenderit totam modi maxime explicabo quos doloremque nihil quibusdam, earum asperiores maiores nulla vitae laboriosam! Nostrum consequatur adipisci fugit.
+                </p>
+            </div>
+        </div>
+        <footer>
+            <div class="row bg-dark">
+                <div class="col-md-12 text-light footer">
+                    <p style="color: white;">
+                        <script type="text/javascript">
+                            copyright = new Date();
+
+                            update = copyright.getFullYear();
+
+                            document.write("© 2018 - " + update + " " + "Mi web");
+                        </script>
+                    </p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    
+
     <script src="css/bootstrap-5.0.0/js/bootstrap.bundle.js"></script>
 </body>
 

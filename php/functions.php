@@ -35,17 +35,38 @@
 
     //registrarUusarios
     function registrarUsuario($conexion,$correo,$usuario,$pass){
+        
+        $passencrypt=password_hash($pass,PASSWORD_DEFAULT);
+
         $sql="INSERT INTO usuario (correo,usuario,contraseña) VALUES
-        (:correo,:usuario,:contraseña)";
+        (:correo,:usuario,:pass)";
 
         $result=$conexion->prepare($sql);
-        $result->bindParam(':correo',$_POST['correo'],PDO::PARAM_STR);
-        $result->bindParam(':usuario',$_POST['usuario'],PDO::PARAM_STR);
-        $result->bindParam(':contraseña',$_POST['pass'],PDO::PARAM_STR);
+        $result->bindParam(':correo',$correo,PDO::PARAM_STR);
+        $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
+        $result->bindParam(':pass',$passencrypt,PDO::PARAM_STR);
 
         $success=$result->execute();
 
         if($success){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //function IniciarSession
+    function iniciarSession($conexion,$correo,$pass){
+
+        $sql="SELECT usuario,contraseña FROM usuario WHERE correo=:correo";
+
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':correo',$correo,PDO::PARAM_STR);
+        $result->execute();
+
+        $row=$result->fetchObject();
+
+        if(password_verify($pass,$row->contraseña)){
             return true;
         }else{
             return false;
