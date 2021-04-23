@@ -92,9 +92,9 @@
 
     //guardarProductos
     function guardarProducto($conexion,$nombre,$precio,$categoria,$imagen){
-       $nombre_img=$_FILES['file']['name'];
-       $formato_img=$_FILES['file']['type'];
-       $ubicacion=$_FILES['file']['tmp_name'];
+       $nombre_img=$_FILES['imagen']['name'];
+       $formato_img=$_FILES['imagen']['type'];
+       $ubicacion=$_FILES['imagen']['tmp_name'];
 
        $uploads_img='img/productos';
 
@@ -113,5 +113,19 @@
        }else{
            return false;
        }
+    }
+
+    //eliminarProductos
+    function eliminarProductos($conexion,$id){
+        $sql="DELETE FROM productos WHERE id=:id";
+
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':id',$id,PDO::PARAM_INT);
+
+        if($result->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 ?>
