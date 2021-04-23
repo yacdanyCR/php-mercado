@@ -14,7 +14,7 @@
         include_once 'php/functions.php';
 
         if(isset($_GET['id'])){
-            $id=$_GET['id'];
+            
         }else{
             header('Location:productos.php');
         }
