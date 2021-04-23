@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap-5.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons-1.4.1/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Inicio</title>
 </head>
@@ -21,7 +22,7 @@
         ?>
     </header>
 
-    <div class="container-fluid">
+    <div class="main">
         <div class="row">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
