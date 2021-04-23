@@ -3,7 +3,7 @@
 //productos seccion productos
     function mostrarProductos($conexion){
         $registros=array();
-        $sql="SELECT id,nombre,precio,imagen FROM productos";
+        $sql="SELECT id,nombre,precio,imagen,categoria FROM productos";
 
         $result=$conexion->prepare($sql);
         $result->execute();
@@ -88,5 +88,30 @@
     function cerrarSession(){
         session_destroy();
         header('Location:login.php');
+    }
+
+    //guardarProductos
+    function guardarProducto($conexion,$nombre,$precio,$categoria,$imagen){
+       $nombre_img=$_FILES['file']['name'];
+       $formato_img=$_FILES['file']['type'];
+       $ubicacion=$_FILES['file']['tmp_name'];
+
+       $uploads_img='img/productos';
+
+       $sql="INSERT INTO productos (nombre,precio,categoria,imagen) VALUES 
+       (:nombre,:precio,:categoria,:imagen)";
+
+       $result=$conexion->prepare($sql);
+       $result->bindParam(':nombre',$nombre,PDO::PARAM_STR);
+       $result->bindParam(':precio',$precio,PDO::PARAM_STR);
+       $result->bindParam(':categoria',$categoria,PDO::PARAM_STR);
+       $result->bindParam(':imagen',$nombre_img,PDO::PARAM_STR);
+       
+       if($result->execute()){
+           move_uploaded_file($ubicacion,"$uploads_img/$nombre_img");
+           return true;
+       }else{
+           return false;
+       }
     }
 ?>

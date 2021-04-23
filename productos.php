@@ -23,7 +23,6 @@
     <div class="container">
         <div class="row">
             <?php
-            //$registro = mostrarProductos($conexion);
             $row = mostrarProductos($conexion);
             foreach ($row as $key => $value) :
             ?>

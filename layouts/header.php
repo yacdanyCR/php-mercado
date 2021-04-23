@@ -36,15 +36,20 @@
       }
       ?>
       <?php
-        if(isset($_POST['CerrarSession'])){
-          include_once 'php/functions.php';
-          cerrarSession();
-        }
+      if (isset($_POST['CerrarSession'])) {
+        include_once 'php/functions.php';
+        cerrarSession();
+      }
       ?>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class="form my-2 my-lg-0" method="get">
+      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" name="buscar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="busqueda">Buscar</button>
     </form>
+    <?php
+      if(isset($_GET['busqueda'])){
+        header('Location:buscar.php?buscar='.$_GET['buscar']);
+      }
+    ?>
   </div>
 </nav>
