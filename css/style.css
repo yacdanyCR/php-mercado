@@ -14,3 +14,12 @@
 .main{
     width: 100%;
 }
+
+.form_login{
+    padding-top: 10%;
+}
+
+.btn-registro{
+    padding-left: 55%;
+    margin-bottom: 30%;
+}

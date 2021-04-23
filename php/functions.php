@@ -15,6 +15,7 @@
         return $registros;
     }
 
+    //mostrarProducto al seleccionar en la secion de productos
     function mostrarProductoSeleccionado($conexion,$id){
         $producto=array();
         $id_producto=$id;
@@ -32,5 +33,22 @@
         return $producto;
     }
 
+    //registrarUusarios
+    function registrarUsuario($conexion,$correo,$usuario,$pass){
+        $sql="INSERT INTO usuario (correo,usuario,contraseña) VALUES
+        (:correo,:usuario,:contraseña)";
 
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':correo',$_POST['correo'],PDO::PARAM_STR);
+        $result->bindParam(':usuario',$_POST['usuario'],PDO::PARAM_STR);
+        $result->bindParam(':contraseña',$_POST['pass'],PDO::PARAM_STR);
+
+        $success=$result->execute();
+
+        if($success){
+            return true;
+        }else{
+            return false;
+        }
+    }
 ?>

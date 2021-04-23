@@ -23,9 +23,9 @@
     }
     ?>
 
-    <div class="main">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 txt-center mt-5">
+            <div class="col-md-6 txt-center mt-5">
             <?php
                 foreach ($row as $key => $value) :
             ?>
