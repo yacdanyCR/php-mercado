@@ -20,7 +20,8 @@
         $producto=array();
         $id_producto=$id;
         
-        $sql="SELECT * FROM productos WHERE id=:id_producto";
+        $sql="SELECT * FROM productos INNER JOIN usuario ON productos.usuario=usuario.usuario WHERE 
+        id=:id_producto";
 
         $result=$conexion->prepare($sql);
         $result->bindParam(':id_producto',$id_producto,PDO::PARAM_INT);
@@ -73,7 +74,7 @@
         }
     }
 
-    //function seleccionarUsuario
+    //function seleccionarUsuario al iniciar Session
     function obtenerUsuario($conexion,$email){
         $sql="SELECT usuario FROM usuario WHERE correo=:correo";
 
@@ -180,5 +181,18 @@
         }
 
         return $producto;
+    }
+
+
+    //obtenerUsuario <- para registrar datos personales
+    function datosUsuario($conexion,$usuario){
+
+        $sql="SELECT * FROM usuario WHERE usuario=:usuario";
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
+
+        $result->execute();
+
+        return $result->fetchObject();
     }
 ?>

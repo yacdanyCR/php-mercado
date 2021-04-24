@@ -33,13 +33,13 @@
                 </div>
                 <div class="carousel-inner img-carousel">
                     <div class="carousel-item active">
-                        <img src="img/carousel/RUYA-NEW-3-1080x675.jpg" class="d-block w-100" alt="...">
+                        <img src="img/carousel/Turrialba-Volcano-Costa-Rica.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="img/carousel/Galerias-nuevos-restaurantes-2019-CNN-1.jpg" class="d-block w-100" alt="...">
+                        <img src="img/carousel/Turrialba-Volcano-Costa-Rica.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="img/carousel/SpiceMarket_cDanielAlvarez.jpg" class="d-block w-100" alt="...">
+                        <img src="img/carousel/Turrialba-Volcano-Costa-Rica.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -75,21 +75,9 @@
                 </p>
             </div>
         </div>
-        <footer>
-            <div class="row bg-dark">
-                <div class="col-md-12 text-light footer">
-                    <p style="color: white;">
-                        <script type="text/javascript">
-                            copyright = new Date();
-
-                            update = copyright.getFullYear();
-
-                            document.write("© 2018 - " + update + " " + "Mi web");
-                        </script>
-                    </p>
-                </div>
-            </div>
-        </footer>
+      <?php
+            include_once 'layouts/footer.php'
+      ?>
     </div>
 
 
