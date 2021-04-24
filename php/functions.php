@@ -128,4 +128,23 @@
             return false;
         }
     }
+
+    //Productos de Usuario en login
+    function productosUsuario($conexion,$usuario){
+
+        $productos=array();
+
+        $sql="SELECT * FROM productos INNER JOIN usuario ON productos.usuario=usuario.usuario WHERE usuario.usuario=:usuario";
+
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
+
+        $result->execute();
+
+        while($row=$result->fetchObject()){
+            $producto[]=$row;
+        }
+
+        return $producto;
+    }
 ?>
