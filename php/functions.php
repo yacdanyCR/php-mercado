@@ -91,21 +91,22 @@
     }
 
     //guardarProductos
-    function guardarProducto($conexion,$nombre,$precio,$categoria,$imagen){
+    function guardarProducto($conexion,$nombre,$precio,$categoria,$imagen,$usuario){
        $nombre_img=$_FILES['imagen']['name'];
        $formato_img=$_FILES['imagen']['type'];
        $ubicacion=$_FILES['imagen']['tmp_name'];
 
        $uploads_img='img/productos';
 
-       $sql="INSERT INTO productos (nombre,precio,categoria,imagen) VALUES 
-       (:nombre,:precio,:categoria,:imagen)";
+       $sql="INSERT INTO productos (nombre,precio,categoria,imagen,usuario) VALUES 
+       (:nombre,:precio,:categoria,:imagen,:usuario)";
 
        $result=$conexion->prepare($sql);
        $result->bindParam(':nombre',$nombre,PDO::PARAM_STR);
        $result->bindParam(':precio',$precio,PDO::PARAM_STR);
        $result->bindParam(':categoria',$categoria,PDO::PARAM_STR);
        $result->bindParam(':imagen',$nombre_img,PDO::PARAM_STR);
+       $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
        
        if($result->execute()){
            move_uploaded_file($ubicacion,"$uploads_img/$nombre_img");
@@ -129,6 +130,23 @@
         }
     }
 
+    //Actualizar Productos
+    function actualizarProductos($conexion,$nombre,$precio,$categoria,$id){
+        $sql="UPDATE productos SET nombre=:nombre,precio=:precio,categoria=:categoria WHERE id=:id";
+
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':nombre',$nombre,PDO::PARAM_STR);
+        $result->bindParam(':precio',$precio,PDO::PARAM_STR);
+        $result->bindParam(':categoria',$categoria,PDO::PARAM_STR);
+        $result->bindParam(':id',$id,PDO::PARAM_INT);
+
+        if($result->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     //Productos de Usuario en login
     function productosUsuario($conexion,$usuario){
 
@@ -139,6 +157,22 @@
         $result=$conexion->prepare($sql);
         $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
 
+        $result->execute();
+
+        while($row=$result->fetchObject()){
+            $producto[]=$row;
+        }
+
+        return $producto;
+    }
+
+    //SeleccionarProducutos <- para actualizar
+    function productoSeleccionado($conexion,$id){
+        $producto=array();
+
+        $sql="SELECT * FROM productos WHERE id=:id";
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':id',$id,PDO::PARAM_INT);
         $result->execute();
 
         while($row=$result->fetchObject()){
