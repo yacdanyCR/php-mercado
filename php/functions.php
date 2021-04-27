@@ -153,7 +153,7 @@
 
         $productos=array();
 
-        $sql="SELECT * FROM productos INNER JOIN usuario ON productos.usuario=usuario.usuario WHERE usuario.usuario=:usuario";
+        $sql="SELECT id,productos.nombre,categoria,precio,imagen FROM productos INNER JOIN usuario ON productos.usuario=usuario.usuario WHERE usuario.usuario=:usuario";
 
         $result=$conexion->prepare($sql);
         $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
@@ -194,5 +194,40 @@
         $result->execute();
 
         return $result->fetchObject();
+    }
+
+    //actualizar Datos Personales
+    function actualizarDatosPersonales($conexion,$nombre,$telefono,$direccion,$usuario){
+        $sql="UPDATE usuario SET nombre=:nombre,telefono=:telefono,direccion=:direccion WHERE
+        usuario=:usuario";
+
+        $result=$conexion->prepare($sql);
+        $result->bindParam(':nombre',$nombre,PDO::PARAM_STR);
+        $result->bindParam(':telefono',$telefono,PDO::PARAM_INT);
+        $result->bindParam(':direccion',$direccion,PDO::PARAM_STR);
+        $result->bindParam(':usuario',$usuario,PDO::PARAM_STR);
+
+        if($result->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //bsucarProductos
+    function buscarProductos($conexion,$busqueda){
+        $productos=array();
+
+        $sql="SELECT * FROM productos WHERE nombre LIKE :busqueda";
+
+        $result=$conexion->prepare($sql);
+        $result->bindValue(':busqueda',"%{$busqueda}%",PDO::PARAM_STR);
+        $result->execute();
+
+        while($row=$result->fetchObject()){
+            $productos[]=$row;
+        }
+
+        return $productos;
     }
 ?>
